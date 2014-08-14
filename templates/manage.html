@@ -1,0 +1,36 @@
+{{template "head.html" .}}
+{{$profiles := .Profiles}}
+{{range .Accounts.Items}}
+  <b>{{.Name}} ({{.Id}})</b>
+  <form method="POST">
+    {{range $property := .WebProperties}}
+      <fieldset>
+        <legend><a href=".WebsiteUrl">{{.Name}}</a> ({{.Id}})</legend>
+        {{range .Profiles}}
+          <label for="{{.Id}}">
+            <input id="{{.Id}}" type="radio" name="{{$property.Id}}"
+            {{if eq .Id (index $profiles $property.Id)}}
+              checked
+            {{end}}
+            value="{{.Id}}">
+            {{.Name}}
+            {{if eq .Id (index $profiles $property.Id)}}
+              <img src="/badge/{{$property.Id}}.svg">
+            {{end}}
+          </label>
+        {{end}}
+        <label for="{{.Id}}">
+          <input id="{{.Id}}" name="{{.Id}}" type="radio"
+          {{if eq "" (index $profiles $property.Id)}}
+            checked
+          {{end}}
+          value="">
+          Disabled
+        </label>
+      </fieldset>
+      <br>
+    {{end}}
+    <input type="submit">
+  </form>
+{{end}}
+{{template "foot.html" .}}

@@ -1,0 +1,29 @@
+article {
+  margin: 10px auto;
+  max-width: 320px;
+}
+
+body {
+  padding: 80px 80px 0;
+  text-align: center;
+}
+
+fieldset {
+  border: 0;
+  border-top: 2px inset;
+  display: inline-block;
+  text-align: left;
+}
+
+img {
+  vertical-align: text-bottom;
+}
+
+input[type="submit"] {
+  display: block;
+  margin: 10px auto;
+}
+
+label {
+  display: block;
+}

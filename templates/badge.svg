@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="{{.Total}}" height="18">
+  <linearGradient id="a" x2="0" y2="100%">
+    <stop offset="0" stop-color="#fff" stop-opacity=".7"/>
+    <stop offset=".1" stop-color="#aaa" stop-opacity=".1"/>
+    <stop offset=".9" stop-opacity=".3"/>
+    <stop offset="1" stop-opacity=".5"/>
+  </linearGradient>
+  <rect rx="4" width="{{.Total}}" height="18" fill="#555"/>
+  <rect rx="4" x="{{.LeftWidth}}" width="{{.RightWidth}}" height="18" fill="{{.Color}}"/>
+  <path fill="{{.Color}}" d="M{{.LeftWidth}} 0h4v18h-4z"/>
+  <rect rx="4" width="{{.Total}}" height="18" fill="url(#a)"/>
+  <g fill="#fff" text-anchor="middle" font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="11">
+    <text x="{{.LeftCenter}}" y="14" fill="#010101" fill-opacity=".3">{{.Left}}</text>
+    <text x="{{.LeftCenter}}" y="13">{{.Left}}</text>
+    <text x="{{.RightCenter}}" y="14" fill="#010101" fill-opacity=".3">{{.Right}}</text>
+    <text x="{{.RightCenter}}" y="13">{{.Right}}</text>
+  </g>
+</svg>
