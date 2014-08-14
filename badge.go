@@ -50,7 +50,7 @@ func (s *Session) Key(c appengine.Context) *datastore.Key {
 	if s.Account.Username == "" {
 		return datastore.NewIncompleteKey(c, "Account", nil)
 	}
-	return datastore.NewKey(c, "account", s.Account.Username, 0, nil)
+	return datastore.NewKey(c, "Account", s.Account.Username, 0, nil)
 }
 
 type Property struct {
