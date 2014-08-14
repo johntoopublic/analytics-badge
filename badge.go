@@ -301,9 +301,9 @@ func badge(w http.ResponseWriter, r *http.Request) {
 			c.Errorf("badge(Account) error: %#v", err)
 			return
 		}
+		loaded := a
 		t := &oauth.Transport{Config: &config, Transport: &urlfetch.Transport{Context: c}}
-		old := a.GetToken()
-		t.Token = old
+		t.Token = a.GetToken()
 		analytics, err := analytics.New(t.Client())
 		if err != nil {
 			c.Errorf("badge error: %#v", err)
@@ -327,8 +327,8 @@ func badge(w http.ResponseWriter, r *http.Request) {
 		if err := memcache.Set(c, item); err != nil {
 			c.Errorf("badge(Memcache) error: %#v", err)
 		}
-		if t.Token != old {
-			a.SetToken(t.Token)
+		a.SetToken(t.Token)
+		if a != loaded {
 			_, err = datastore.Put(c, p.Account, &a)
 		}
 	}
