@@ -169,7 +169,6 @@ func manage(w http.ResponseWriter, r *http.Request, s *Session) error {
 			loaded[property.Id] = true
 		}
 	}
-	c.Infof("setting: %#v", t.Token)
 	s.Account.SetToken(t.Token)
 	if r.Method == "POST" {
 		w.Header().Set("Content-Type", "text/html")
@@ -237,7 +236,6 @@ func auth(w http.ResponseWriter, r *http.Request, s *Session) error {
 	}
 	// Error out if no associated properties?
 	s.Account.Username = accounts.Username
-	c.Infof("setting: %#v", t.Token)
 	s.Account.SetToken(t.Token)
 	http.Redirect(w, r, "/manage", http.StatusFound)
 	return nil
@@ -329,7 +327,6 @@ func badge(w http.ResponseWriter, r *http.Request) {
 		if err := memcache.Set(c, item); err != nil {
 			c.Errorf("badge(Memcache) error: %#v", err)
 		}
-		c.Infof("setting: %#v", t.Token)
 		a.SetToken(t.Token)
 		if a != loaded {
 			_, err = datastore.Put(c, p.Account, &a)
