@@ -133,13 +133,14 @@ func init() {
 	var parsed Config
 	json.Unmarshal(file, &parsed)
 	config = oauth.Config{
-		AccessType:   "offline",
-		Scope:        "https://www.googleapis.com/auth/analytics.readonly",
-		AuthURL:      parsed.Web.AuthUri,
-		ClientId:     parsed.Web.ClientId,
-		ClientSecret: parsed.Web.ClientSecret,
-		RedirectURL:  parsed.Web.RedirectURIs[0],
-		TokenURL:     parsed.Web.TokenURI,
+		AccessType:     "offline",
+		ApprovalPrompt: "force",
+		Scope:          "https://www.googleapis.com/auth/analytics.readonly",
+		AuthURL:        parsed.Web.AuthUri,
+		ClientId:       parsed.Web.ClientId,
+		ClientSecret:   parsed.Web.ClientSecret,
+		RedirectURL:    parsed.Web.RedirectURIs[0],
+		TokenURL:       parsed.Web.TokenURI,
 	}
 	http.HandleFunc("/", index)
 	http.HandleFunc("/badge/", badge)
